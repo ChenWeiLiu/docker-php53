@@ -23,15 +23,21 @@ Usage
 Building and image
 ------------------
 
+.. code-block:: bash
+
     make
 
 Running a container
 -------------------
 
+.. code-block:: bash
+
     docker run -d -p 9000:9000 -v /var/log/php-fpm-container:/var/log/php-fpm -v /srv/webapp:/srv/webapp --name container2 -t leucos/phpfpm-53:latest
 
 Fiddling with the running container
 -----------------------------------
+
+.. code-block:: bash
 
     docker exec -it $(docker ps -q) /bin/bash
 
