@@ -17,6 +17,15 @@ Includes support for:
 * mysql
 * xml
 
+It also has ssmtp support for sending mails from php-fpm. ssmtp configuration
+is linked from docker host, and should look like this:
+
+.. code-block:: bash
+
+   root=user@some.domain
+   FromLineOverride=YES
+   mailhub=ip.of.re.lay
+
 Usage
 =====
 
@@ -32,7 +41,9 @@ Running a container
 
 .. code-block:: bash
 
-    docker run -d -p 9000:9000 -v /var/log/php-fpm-container:/var/log/php-fpm -v /srv/webapp:/srv/webapp --name container2 -t leucos/phpfpm-53:latest
+    docker run -d -p 9000:9000 -v /var/log/php-fpm-container:/var/log/php-fpm \
+      -v /srv/webapp:/srv/webapp -v /etc/ssmtp.conf:/etc/ssmtp/ssmtp.conf.j2 \
+      --name container2 -t leucos/phpfpm-53:latest
 
 Fiddling with the running container
 -----------------------------------
