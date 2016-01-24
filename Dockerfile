@@ -3,7 +3,9 @@ FROM ubuntu:precise
 MAINTAINER Michel blanc <mb@mbnet.fr>
 
 RUN apt-get update && apt-get upgrade
-RUN apt-get -y install php-pear php5-cgi php5-cli php5-common php5-curl php5-fpm php5-gd php5-memcache php5-imagick php5-intl php5-mcrypt php5-mysql php5-tidy php5-xsl php-apc ssmtp libssh2-php
+RUN apt-get -y install php-pear php5-cgi php5-cli php5-common php5-curl php5-fpm php5-gd php5-imagick php5-intl php5-mcrypt php5-mysql php5-tidy php5-xsl php-apc ssmtp libssh2-php make
+
+RUN echo "" | pecl install memcache-beta
 
 COPY www.conf /etc/php5/fpm/pool.d/www.conf
 COPY php.ini /etc/php5/fpm/php.ini
